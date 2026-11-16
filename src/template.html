@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>HueForge Floating Frame Maker</title>
+<style>
+ :root{--bg:#faf8f5;--ink:#2b2620;--acc:#b5651d;--line:#e2dbd0}
+ *{box-sizing:border-box} body{margin:0;font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+ header{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+ header h1{font-size:19px;margin:0} header span{color:#7a6f62}
+ main{display:grid;grid-template-columns:380px 1fr;height:calc(100vh - 92px)}
+ #side{overflow:auto;padding:12px 16px;border-right:1px solid var(--line)}
+ #view{position:relative;min-height:300px}
+ details{border:1px solid var(--line);border-radius:8px;margin:0 0 10px;background:#fff}
+ summary{cursor:pointer;padding:8px 10px;font-weight:600}
+ .row{padding:6px 10px;border-top:1px solid #f1ece4}
+ .row label{display:block;font-weight:500;text-transform:capitalize}
+ .ctl{display:flex;gap:8px;align-items:center} .ctl input[type=range]{flex:1} .ctl input[type=number]{width:90px}
+ .ctl select{width:100%} .desc{color:#7a6f62;font-size:12px;margin-top:2px}
+ .buttons{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+ button{font:inherit;padding:8px 14px;border-radius:7px;border:1px solid var(--line);background:#fff;cursor:pointer}
+ button.primary{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:600}
+ button:disabled{opacity:.5;cursor:default}
+ #status{margin:6px 0;font-weight:600} #status.busy{color:#8a6d00} #status.ok{color:#2e7d32} #status.err{color:#b00020;white-space:pre-wrap}
+ #info div{margin:3px 0} .warn{color:#8a5a00} .small{color:#7a6f62;font-size:12px}
+ .tips{font-size:12.5px;color:#4d453b;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+ .tips li{margin:2px 0}
+ footer{height:40px;padding:10px 18px;border-top:1px solid var(--line);font-size:12px;color:#7a6f62}
+ #viewopt{position:absolute;right:12px;top:10px;background:#fffc;padding:4px 8px;border-radius:6px;font-size:12px}
+ @media (max-width:800px){main{grid-template-columns:1fr;height:auto}#view{height:60vh}}
+</style></head>
+<body>
+<header><h1>HueForge Floating Frame Maker</h1><span>Enter your print's width and height, click Generate, download, print.</span></header>
+<main>
+ <section id="side">
+  <div id="params"></div>
+  <div class="buttons"><button id="gen" class="primary">Generate</button><button id="reset">Reset to defaults</button></div>
+  <div id="status"></div>
+  <div id="info"></div>
+  <div class="buttons"><button id="dl_3mf" disabled>Download 3MF</button><button id="dl_stl" disabled>Download STL</button><button id="dl_scad">Download .scad</button></div>
+  <ul class="tips">
+   <li>Print exactly as exported: frame back face down. <b>No supports, no brim</b> (a brim welds the stand in).</li>
+   <li>PLA, 0.16 or 0.20 mm layers, 3 walls, 15% infill.</li>
+   <li>Snap the stand out of its bay, then slide it into the two dovetails on the back of the spine, from the right when you look at the back. It leans the frame back 10°. Slide it out to hang the frame on the keyhole.</li>
+   <li>Glue the HueForge print onto the ledge with small dots of E6000 or gel CA.</li>
+  </ul>
+ </section>
+ <section id="view"><label id="viewopt"><input type="checkbox" id="viewback"> view from the back</label></section>
+</main>
+<footer>Frame design by <b>Michael Bernasconi</b>. Runs entirely in your browser (works offline) using OpenSCAD (GPL-2.0, openscad.org, WASM build github.com/lorenzowritescode/openscad-wasm) and three.js (MIT).</footer>
+<script>/*__BUNDLE__*/</script>
+</body></html>
